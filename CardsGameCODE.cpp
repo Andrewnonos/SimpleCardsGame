@@ -1,14 +1,11 @@
-// Использованные библиотеки
 #include<iostream>
 #include<cstdlib>
 #include<conio.h>
 #include<unistd.h>
 #include<windows.h>
 
-// Пространства имён
 using namespace std;
 
-// Переменные, которые составляют основу всей игры
 bool gameOver;
 int x[3] ={ 0, 1, 2 };
 int x1 = 0, x2 = 1, x3 = 2;
@@ -44,7 +41,6 @@ void Input(){
 	}
 }
 
-// Функция, задающая вопрос о готовности игрока продолжать
 void ProceedFunc(){
 	cout << "Proceed?\n";
 	while((contrls != NEXT) && (contrls != STOP)){
@@ -54,7 +50,6 @@ void ProceedFunc(){
 	}
 }
 
-// Начальные данные
 void Setup(){
 	gameOver = false;
 	SCORE = 0;
@@ -63,7 +58,6 @@ void Setup(){
 	cout << "We will shuffle it and then you should choose only 1 card which we asked for.\n";
 }
 
-// Функция, создающая случайные данные для перемешивания карт
 void randPOS(){
 	x1 = irand(0, 20) % 3;
 	x2 = irand(0, 20) % 3;
@@ -74,7 +68,6 @@ void randPOS(){
 		x3 = irand(0, 20) % 3;
 }
 
-// Прорисовка всех объектов на экране 
 void Draw(){
 	for(int j = 0; j < 3; j++){
 		randPOS();
@@ -122,7 +115,7 @@ void Logic(){
 	switch(question)
 		{
 		case 0:
-			cout << "jack?\n";				// Выбор случайного вопроса
+			cout << "jack?\n";	
 			True = x1;
 			break;
 		case 1:
@@ -137,7 +130,7 @@ void Logic(){
 	
 	while(contrls == STOP)
 		Input();
-	if(x[contrls-1] == True){							// Вывод комментария правильный ли был ответ и начисление-вычитание баллов
+	if(x[contrls-1] == True){				
 		cout << "GOTCHA! You're right!\nYour score: ";
 		SCORE += 10;
 		cout << SCORE << endl;
@@ -152,7 +145,7 @@ void Logic(){
 }
 
 
-int main(void){											// Основная функция сшивающая все другие функции: прорисовку, логику и ввод ответа с клавиатуры тд.
+int main(void){											
 	Setup();
 	ProceedFunc();
 	while(!gameOver){
